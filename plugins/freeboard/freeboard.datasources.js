@@ -292,9 +292,11 @@
 		this.updateNow = function () {
 			dweetio.get_latest_dweet_for(currentSettings.thing_id, function (err, dweet) {
 				if (err) {
+					console.error("Error fetching dweet:", err); // Log error
 					//onNewDweet({});
 				}
 				else {
+					 console.log("Received dweet:", dweet); // Log response dari Dweet.io
 					onNewDweet(dweet[0].content);
 				}
 			});
