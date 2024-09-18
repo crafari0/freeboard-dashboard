@@ -323,7 +323,7 @@
 		"type_name": "dweet_io",
 		"display_name": "Dweet.io",
 		"external_scripts": [
-			"https://raw.githubusercontent.com/crafari0/freeboard-dashboard/refs/heads/main/plugins/freeboard/dweet.io.min.js"
+			"https://cdn.jsdelivr.net/gh/crafari0/freeboard-dashboard/plugins/freeboard/dweet.io.min.js"
 		],
 		"settings": [
 			{
