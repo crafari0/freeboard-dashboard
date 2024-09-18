@@ -1045,4 +1045,69 @@
         }
     });
 
+freeboard.addStyle('.button-widget', "text-align:center;");
+
+var buttonWidget = function (settings) {
+    var self = this;
+    var currentSettings = settings;
+    var buttonElement = $('<button class="button-widget"></button>')
+        .html(currentSettings.title)
+        .on('click', function () {
+            var value = freeboard.evaluate(currentSettings.on_click);
+            if (typeof value === "function") {
+                value();
+            }
+        });
+
+    this.render = function (element) {
+        $(element).append(buttonElement);
+    };
+
+    this.onSettingsChanged = function (newSettings) {
+        currentSettings = newSettings;
+        buttonElement.html(currentSettings.title);
+    };
+
+    this.onCalculatedValueChanged = function (settingName, newValue) {
+        if (settingName == "title") {
+            buttonElement.html(newValue);
+        }
+    };
+
+    this.onDispose = function () {
+        // Clean up if needed
+    };
+
+    this.getHeight = function () {
+        return 1; // Button only takes 1 block height
+    };
+
+    this.onSettingsChanged(settings);
+};
+
+freeboard.loadWidgetPlugin({
+    "type_name": "button_widget",
+    "display_name": "Button Widget",
+    "fill_size": true,
+    "settings": [
+        {
+            "name": "title",
+            "display_name": "Button Text",
+            "type": "calculated",
+            "description": "Text to display on the button"
+        },
+        {
+            "name": "on_click",
+            "display_name": "On Click (JavaScript)",
+            "type": "calculated",
+            "description": "Action to perform when button is clicked"
+        }
+    ],
+    newInstance: function (settings, newInstanceCallback) {
+        newInstanceCallback(new buttonWidget(settings));
+    }
+});
+
+	
+
 }());
