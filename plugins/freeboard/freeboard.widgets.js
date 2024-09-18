@@ -1044,8 +1044,7 @@
             newInstanceCallback(new htmlWidget(settings));
         }
     });
-
-freeboard.addStyle('.button-widget', "text-align:center;");
+   freeboard.addStyle('.button-widget', "text-align:center;");
 
 var buttonWidget = function (settings) {
     var self = this;
@@ -1108,6 +1107,5 @@ freeboard.loadWidgetPlugin({
     }
 });
 
-	
 
 }());
